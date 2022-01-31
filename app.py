@@ -98,6 +98,11 @@ def logout():
     return redirect(url_for('index'))
 
 
+@app.route('/favicon.ico')
+def get_favicon():
+    return ''
+
+
 @app.route('/chat', methods=['GET', 'POST'])
 @login_required
 def chat():
