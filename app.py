@@ -29,7 +29,7 @@ login_manager.login_view = 'login'
 CORS(app)
 
 Session(app)
-socketio = SocketIO(app, manage_session=False, allowEIO3=True, transports=['websocket', 'polling'])
+socketio = SocketIO(app, manage_session=False, cors_allowed_origins='*')
 
 
 class User(UserMixin, db.Model):
