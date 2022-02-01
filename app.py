@@ -26,7 +26,7 @@ login_manager.init_app(app)
 login_manager.login_view = 'login'
 
 Session(app)
-socketio = SocketIO(app)
+socketio = SocketIO(app, manage_session=False, allowEIO3=True)
 
 
 class User(UserMixin, db.Model):
