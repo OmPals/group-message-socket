@@ -11,6 +11,7 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 import datetime
 import config
 import mongo_repo
+from flask_cors import CORS
 
 
 app = Flask(__name__)
@@ -24,6 +25,8 @@ db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
+
+CORS(app)
 
 Session(app)
 socketio = SocketIO(app, manage_session=False, allowEIO3=True, transports=['websocket', 'polling'])
