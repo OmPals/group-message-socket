@@ -12,7 +12,7 @@
             var socket;
             $(document).ready(function(){
                 var protocol = window.location.protocol;
-                socket = io.connect(protocol + '//' + document.domain + ':' + location.port + namespace);
+                socket = io.connect(protocol + '//' + document.domain + ':' + location.port + '/chat');
                 socket.on('connect', function() {
                     socket.emit('join', {});
                 });
