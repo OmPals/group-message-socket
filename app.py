@@ -12,6 +12,7 @@ import datetime
 import config
 import mongo_repo
 
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = config.APP_SECRET_KEY
 app.config['SQLALCHEMY_DATABASE_URI'] = config.DB_CONNECTION
@@ -25,7 +26,7 @@ login_manager.init_app(app)
 login_manager.login_view = 'login'
 
 Session(app)
-socketio = SocketIO(app, manage_session=False, transports=['websocket', 'polling'])
+socketio = SocketIO(app, manage_session=False)
 
 
 class User(UserMixin, db.Model):
@@ -157,5 +158,7 @@ def left(message):
 
 
 if __name__ == '__main__':
-    context = ("cert.pem", "key.pem")
-    app.run(debug=True, ssl_context=context)
+    # context = ssl.SSLContext()
+    # context.load_cert_chain("cert.pem", "key.pem")
+    # app.run(ssl_context=context)
+    app.run()
