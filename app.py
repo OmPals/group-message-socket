@@ -25,7 +25,7 @@ login_manager.init_app(app)
 login_manager.login_view = 'login'
 
 Session(app)
-socketio = SocketIO(app, manage_session=False)
+socketio = SocketIO(app, manage_session=False, transports=['websocket', 'polling'])
 
 
 class User(UserMixin, db.Model):
@@ -157,4 +157,4 @@ def left(message):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, ssl_context='adhoc')
