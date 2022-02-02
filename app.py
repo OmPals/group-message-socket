@@ -29,7 +29,7 @@ login_manager.login_view = 'login'
 CORS(app)
 
 Session(app)
-socketio = SocketIO(app, manage_session=False, cors_allowed_origins='*', transports=["websocket", "polling"])
+socketio = SocketIO(app, manage_session=False, cors_allowed_origins='*')
 
 
 class User(UserMixin, db.Model):
@@ -164,4 +164,4 @@ if __name__ == '__main__':
     # context = ssl.SSLContext()
     # context.load_cert_chain("cert.pem", "key.pem")
     # app.run(ssl_context=context)
-    socketio.run(app)
+    app.run()
