@@ -12,7 +12,7 @@ import datetime
 import config
 import mongo_repo
 from flask_cors import CORS
-
+import ssl
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = config.APP_SECRET_KEY
@@ -29,7 +29,7 @@ login_manager.login_view = 'login'
 CORS(app)
 
 Session(app)
-socketio = SocketIO(app, manage_session=False, cors_allowed_origins='*')
+socketio = SocketIO(app, manage_session=False, cors_allowed_origins='*', transports=["websocket", "polling"])
 
 
 class User(UserMixin, db.Model):
@@ -164,4 +164,4 @@ if __name__ == '__main__':
     # context = ssl.SSLContext()
     # context.load_cert_chain("cert.pem", "key.pem")
     # app.run(ssl_context=context)
-    app.run()
+    socketio.run(app)

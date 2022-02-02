@@ -12,7 +12,10 @@
             var socket;
             $(document).ready(function(){
                 var protocol = window.location.protocol;
-                socket = io.connect(protocol + '//' + document.domain + ':' + location.port + '/chat');
+                //socket = io.connect(protocol + '//' + document.domain + ':' + location.port + '/chat');
+
+                socket = io('/chat', { transports: ["websocket", "polling"] });
+
                 socket.on('connect', function() {
                     socket.emit('join', {});
                 });
